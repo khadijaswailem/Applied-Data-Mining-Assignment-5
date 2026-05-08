@@ -67,7 +67,7 @@ The generator returned a revised candidate and all tests passed so the critic ro
 
 **What went wrong:** The LLM at the start didnt adhere to the even count median rule. It didnt return the lower of the two middle values. Iteration 2 made minimal change so it failed again.On iteration 3 (with a larger candidate lenght of characters) the test passed.
 
-**What would fix it:** A critic that isolates the specific failing point and gives only that part back instead of the full traceback, this would make the generator focus on the even count issue quicker.This is actually teh second stretch goal that could be future work for me.
+**What would fix it:** A critic that isolates the specific failing point and gives only that part back instead of the full traceback, this would make the generator focus on the even count issue quicker.This is actually the second stretch goal that could be future work for me.
 
 **The full output:**
 
