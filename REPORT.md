@@ -6,14 +6,14 @@
 
 ### Critic: Programmatic (not LLM-based)
 
-I chose that the critic node is fully programmatic (meaning no LLM call is made) since the test execution already produces a direct response. Either  "ALL TESTS PASSED" is in stdout, or its not. There is no need for an LLM to reason about anything. Also adding an LLM critic would cost tokens and latency with no added use because the generator already receives the stderr/stdout. The critic's job is deciding what to do next based on the test output, not reasoning, so the flow is as follows if 'passed == True' then go to END, and if 'iteration >= max_iterations also go to END, else we go back to generator.
+I chose that the critic node is fully programmatic (meaning no LLM call is made) since the test execution already produces a direct response. Either  "ALL TESTS PASSED" is in stdout, or its not. There is no need for an LLM to reason about anything. Also adding an LLM critic would cost tokens and latency with no added use because the generator already receives the stderr/stdout. The critic's job is deciding what to do next based on the test output, not reasoning, so the flow is as follows if "passed == True" then go to END, and if "iteration >= max_iterations" also go to END, else we go back to generator.
 
 ### What I put in the State Fields and why
 
 
 `buggy_code`: Preserved as a reference so it prevents the LLM from being side tracked from the original problem
 
-`current_code`: Extracted from the LLM response into a field on its own so 'run_tests' doesnt have to parse code out of the message string
+`current_code`: Extracted from the LLM response into a field on its own so "run_tests" doesnt have to parse code out of the message string
 
 `test_code`: Gets passed to both 'run_tests' and the generator prompt
 
@@ -21,9 +21,9 @@ I chose that the critic node is fully programmatic (meaning no LLM call is made)
 
 `iteration`: increases the counter to prevent looping forever 
 
-`passed`: Flag set by 'run_tests_node' to be read by 'should_continue' to route the graph to the next correct state
+`passed`: Flag set by 'run_tests_node' to be read by "should_continue" to route the graph to the next correct state
 
-`messages`: uses 'Annotated[list, operator.add]' so LangGraph appends instead of replacing allowing us to have a full conversation trace
+`messages`: uses "Annotated[list, operator.add]" so LangGraph appends instead of replacing allowing us to have a full conversation trace
 
 ### Termination Conditions I used
 
@@ -35,7 +35,7 @@ Two termination conditions: that all tests pass, and 'iteration >= max_iteration
 
 ![alt text](image-1.png)
 
-### Interpretation:
+**Interpretation:**
 
 The agent solved 6/6 problems, I added an extra complex problem 6 because the 5 I chose were too easy for the model I chose and fixed them all in one iteration showing  that llama-3.3-70b-versatile is a powerful model to catch bugs like : wrong operator, logic like palindrome and off-by-one directly from the code without needing test failure feedback. 
 However, Problem 6 required 3 iterations hence exceting the Reflexion agent
