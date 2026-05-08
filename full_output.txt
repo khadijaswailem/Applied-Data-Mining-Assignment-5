@@ -1,0 +1,380 @@
+(.venv) C:\Users\KhadijaSwailem\Downloads\applieddatamining\assignment 5>python benchmark.py
+
+=== Testing budget cap (max_iterations=1) ===
+
+############################################################
+# Starting Reflexion Agent (budget: 1 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (27 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/1 — passed=True
+[CRITIC] All tests pass — routing to END.
+Budget cap test passed — agent stopped after 1 iteration(s)
+=== Benchmark Sanity Check ===
+Verifying that all buggy codes FAIL their tests (they should).
+
+[sum_list_off_by_one]  (correctly fails)
+[find_max_wrong_operator]  (correctly fails)
+[average_edge_case]  (correctly fails)
+[is_palindrome_logic_bug]  (correctly fails)
+[fibonacci_trick]  (correctly fails)
+[running_median_wrong_structure]  (correctly fails)
+
+All buggy codes correctly fail. Benchmark is valid.
+
+(.venv) C:\Users\KhadijaSwailem\Downloads\applieddatamining\assignment 5>python fixer.py    
+=== Verifying run_tests tool (no LLM) ===
+ run_tests sanity check passed.
+
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (31 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+============================================================
+RESULT SUMMARY
+============================================================
+Passed:     True
+Iterations: 1
+Final code:
+def add(a, b):
+    return a + b
+
+Full trace (3 messages):
+  [0] HumanMessage: Fix this buggy Python function so it passes all the tests.
+
+Buggy code:
+```python
+def add(a, b):
+    return a - b
+```
+
+T
+  [1] AIMessage: ```python
+def add(a, b):
+    return a + b
+```
+  [2] HumanMessage: [CRITIC] Tests passed on iteration 1. Terminating.
+
+=== Testing budget cap (max_iterations=1) ===
+
+############################################################
+# Starting Reflexion Agent (budget: 1 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (27 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/1 — passed=True
+[CRITIC] All tests pass — routing to END.
+Budget cap test passed — agent stopped after 1 iteration(s)
+
+(.venv) C:\Users\KhadijaSwailem\Downloads\applieddatamining\assignment 5>python evaluate.py 
+
+=== Testing budget cap (max_iterations=1) ===
+
+############################################################
+# Starting Reflexion Agent (budget: 1 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (27 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/1 — passed=True
+[CRITIC] All tests pass — routing to END.
+Budget cap test passed — agent stopped after 1 iteration(s)
+****Reflexion Agent Evaluation, All 5 Problems****
+Budget per problem: 5 iterations
+
+
+======================================================================
+PROBLEM 1/6: sum_list_off_by_one
+  Bug type:   off-by-one
+  Difficulty: easy
+  Notes:      range(1, n) skips index 0. The LLM should spot the off-by-one and switch to range(n) or use sum()....
+======================================================================
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (145 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+[RESULT] PASS | iterations=1 | llm_calls=1 | time=2.07s
+
+======================================================================
+PROBLEM 2/6: find_max_wrong_operator
+  Bug type:   wrong-operator
+  Difficulty: easy
+  Notes:      Using strict < means the running maximum is never updated when the next element equals the current m...
+======================================================================
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (181 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+[RESULT] PASS | iterations=1 | llm_calls=1 | time=2.03s
+
+======================================================================
+PROBLEM 3/6: average_edge_case
+  Bug type:   edge-case
+  Difficulty: medium
+  Notes:      Two bugs: (1) no guard for empty list → ZeroDivisionError, (2) integer division // loses the fractio...
+======================================================================
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (115 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+[RESULT] PASS | iterations=1 | llm_calls=1 | time=1.45s
+
+======================================================================
+PROBLEM 4/6: is_palindrome_logic_bug
+  Bug type:   logic
+  Difficulty: medium
+  Notes:      Comparing s == s is always True — the function returns True for everything. The LLM must understand ...
+======================================================================
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (92 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+[RESULT] PASS | iterations=1 | llm_calls=1 | time=1.55s
+
+======================================================================
+PROBLEM 5/6: fibonacci_trick
+  Bug type:   trick
+  Difficulty: hard
+  Notes:      TRICK CASE: Both recursive calls use (n-1) instead of (n-1) and (n-2). This makes the recursion go: ...
+======================================================================
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (129 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 1/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+[RESULT] PASS | iterations=1 | llm_calls=1 | time=1.48s
+
+======================================================================
+PROBLEM 6/6: running_median_wrong_structure
+  Bug type:   cascading-logic
+  Difficulty: hard
+  Notes:      CASCADING TRAP: Bug: uses mean of two middle values instead of lower middle for even-length windows....
+======================================================================
+
+############################################################
+# Starting Reflexion Agent (budget: 5 iterations)
+############################################################
+
+============================================================
+[GENERATOR] Iteration 1 — requesting fix from LLM...
+[GENERATOR] Received candidate code (311 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] Tests failed. Output:
+STDERR:
+Traceback (most recent call last):
+  File "C:\Users\KHADIJ~1\AppData\Local\Temp\tmpc9m7ttku.py", line 13, in <module>
+    assert running_median([1, 3]) == [1, 1]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+
+
+[CRITIC] Iteration 1/5 — passed=False
+[CRITIC] Tests failed, budget remains — routing back to generator.
+
+============================================================
+[GENERATOR] Iteration 2 — requesting fix from LLM...
+[GENERATOR] Received candidate code (311 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] Tests failed. Output:
+STDERR:
+Traceback (most recent call last):
+  File "C:\Users\KHADIJ~1\AppData\Local\Temp\tmpxnib6a_y.py", line 13, in <module>
+    assert running_median([1, 3]) == [1, 1]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+
+
+[CRITIC] Iteration 2/5 — passed=False
+[CRITIC] Tests failed, budget remains — routing back to generator.
+
+============================================================
+[GENERATOR] Iteration 3 — requesting fix from LLM...
+[GENERATOR] Received candidate code (400 chars)
+[RUN_TESTS] Executing candidate code against test suite...
+[RUN_TESTS] All tests passed!
+
+[CRITIC] Iteration 3/5 — passed=True
+[CRITIC] All tests pass — routing to END.
+
+[RESULT] PASS | iterations=3 | llm_calls=3 | time=4.94s
+
+==============================================================================================
+EVALUATION SUMMARY
+==============================================================================================
+Problem                        Bug Type     Difficulty Passed   Iterations LLM Calls Time (s) 
+----------------------------------------------------------------------------------------------
+sum_list_off_by_one            off-by-one   easy       PASS     1          1         2.07     
+find_max_wrong_operator        wrong-operator easy       PASS     1          1         2.03     
+average_edge_case              edge-case    medium     PASS     1          1         1.45     
+is_palindrome_logic_bug        logic        medium     PASS     1          1         1.55     
+fibonacci_trick                trick        hard       PASS     1          1         1.48     
+running_median_wrong_structure cascading-logic hard       PASS     3          3         4.94     
+----------------------------------------------------------------------------------------------
+
+Summary: 6/6 passed | total iterations=8 | total LLM calls=8 | total time=13.52s
+
+[EVALUATE] Results saved to results.csv
+
+
+######################################################################
+# DETAILED TRACES
+######################################################################
+
+======================================================================
+PROBLEM: sum_list_off_by_one — PASS
+Final code:
+def sum_list(nums):
+    # to sum all elements
+    total = 0
+    n = len(nums)
+    for i in range(n):   
+        total += nums[i]
+    return total
+
+Final test output:
+ALL TESTS PASSED
+
+======================================================================
+PROBLEM: find_max_wrong_operator — PASS
+Final code:
+def find_max(nums):
+    # return the largest value
+    current_max = nums[0]
+    for n in nums[1:]:
+        if n > current_max:   
+            current_max = n
+    return current_max
+
+Final test output:
+ALL TESTS PASSED
+
+======================================================================
+PROBLEM: average_edge_case — PASS
+Final code:
+def average(nums):
+    # return the mean
+    if len(nums) == 0:
+        return 0.0
+    return sum(nums) / len(nums)
+
+Final test output:
+ALL TESTS PASSED
+
+======================================================================
+PROBLEM: is_palindrome_logic_bug — PASS
+Final code:
+def is_palindrome(s):
+    # return True only if s equals its reverse
+    return s == s[::-1]
+
+Final test output:
+ALL TESTS PASSED
+
+======================================================================
+PROBLEM: fibonacci_trick — PASS
+Final code:
+def fib(n):
+    # return the n-th Fibonacci number (0-indexed)
+    if n <= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+Final test output:
+ALL TESTS PASSED
+
+======================================================================
+PROBLEM: running_median_wrong_structure — PASS
+Final code:
+def running_median(nums):
+    result = []
+    for i in range(1, len(nums) + 1):
+        window = sorted(nums[:i])
+        mid = len(window) // 2
+        if len(window) % 2 == 1:
+            result.append(window[mid])
+        else:
+            if window[mid-1] < window[mid]:
+                result.append(window[mid-1])
+            else:
+                result.append(window[mid-1])
+    return result
+
+Final test output:
+ALL TESTS PASSED
+
+[EVALUATE] Done.

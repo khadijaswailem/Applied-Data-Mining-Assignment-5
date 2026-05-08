@@ -1,0 +1,7 @@
+problem,bug_type,difficulty,passed,iterations,llm_calls,wall_time_s,trace_length,error
+sum_list_off_by_one,off-by-one,easy,True,1,1,2.07,3,
+find_max_wrong_operator,wrong-operator,easy,True,1,1,2.03,3,
+average_edge_case,edge-case,medium,True,1,1,1.45,3,
+is_palindrome_logic_bug,logic,medium,True,1,1,1.55,3,
+fibonacci_trick,trick,hard,True,1,1,1.48,3,
+running_median_wrong_structure,cascading-logic,hard,True,3,3,4.94,9,
