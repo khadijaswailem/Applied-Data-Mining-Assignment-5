@@ -27,7 +27,7 @@ I chose that the critic node is fully programmatic (meaning no LLM call is made)
 
 ### Termination Conditions I used
 
-Two termination conditions: that all tests pass, and 'iteration >= max_iterations'. The budget cap is a must as without it the LLM might loop forever
+Two termination conditions: that all tests pass, and "iteration >= max_iterations". The budget cap is a must as without it the LLM might loop forever
 
 ---
 
@@ -37,11 +37,13 @@ Two termination conditions: that all tests pass, and 'iteration >= max_iteration
 
 **Interpretation:**
 
-The agent solved 6/6 problems, I added an extra complex problem 6 because the 5 I chose were too easy for the model I chose and fixed them all in one iteration showing  that llama-3.3-70b-versatile is a powerful model to catch bugs like : wrong operator, logic like palindrome and off-by-one directly from the code without needing test failure feedback. 
+```The agent solved 6/6 problems, I added an extra complex problem 6 because the 5 I chose were too easy for the model I chose and fixed them all in one iteration showing  that llama-3.3-70b-versatile is a powerful model to catch bugs like : wrong operator, logic like palindrome and off-by-one directly from the code without needing test failure feedback. 
 However, Problem 6 required 3 iterations hence exceting the Reflexion agent
 The agent needed to see the real test failures before it could identify which of the two bugs 
 to fix first. This shows the main idea behind Reflexion which is feedback 
 from the test execution guides the generator to the correct fix where reading the code on its own wouldnt be enough
+```
+
 ---
 
 
