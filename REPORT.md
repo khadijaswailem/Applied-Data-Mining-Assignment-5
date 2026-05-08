@@ -33,7 +33,7 @@ Two termination conditions: that all tests pass, and "iteration >= max_iteration
 
 ## Results
 
-![alt text](image-1.png)
+![alt text](results.png)
 
 **Interpretation:**
 
