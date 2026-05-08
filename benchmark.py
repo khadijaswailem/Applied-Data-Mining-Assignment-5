@@ -3,7 +3,7 @@
 
 # I used the codes we used to write as assignment in programming 1 & 2 and introduced a bug to them
 # I added a description, bug type, expected difficulty, and notes to each problem for my sake, but the
-# LLM nevers sees it it only gets the buggy code and the test code
+# LLM never sees it, it only gets the buggy code and the test code
 
 
 # Problem 1: Off-By-One Error
@@ -49,7 +49,7 @@ PROBLEM_2 = {
         "Using strict < means the running maximum is never updated when the "
         "next element equals the current max. The first element is always "
         "initialised as the max, so a list whose max is the FIRST element "
-        "accidentally passes. The bug surfaces on [3, 1, 3] → returns 1."
+        "accidentally passes. The bug surfaces on [3, 1, 3] so returns 1."
     ),
     "buggy_code": """\
 def find_max(nums):
@@ -83,7 +83,7 @@ PROBLEM_3 = {
     "bug_type": "edge-case",
     "expected_difficulty": "medium",
     "notes": (
-        "Two bugs: (1) no guard for empty list → ZeroDivisionError, "
+        "Two bugs: (1) no guard for empty list so ZeroDivisionError, "
         "(2) integer division // loses the fractional part. "
         "The agent must fix both."
     ),
@@ -113,7 +113,7 @@ PROBLEM_4 = {
     "bug_type": "logic",
     "expected_difficulty": "medium",
     "notes": (
-        "Comparing s == s is always True — the function returns True for everything. "
+        "Comparing s == s is always True, the function returns True for everything. "
         "The LLM must understand 'palindrome' semantics to fix it correctly."
     ),
     "buggy_code": """\
@@ -133,14 +133,10 @@ assert is_palindrome("abc") == False
 
 
 
-# Problem 5: Trick Case (might require multiple iterations or migth fail)
+# Problem 5: Trick Case 
 # Bug: recursive Fibonacci uses n - 1 for both recursive calls
 # instead of n - 1 and n - 2,  This makes every call return 1,
 # so the function always returns 1 for n >= 1
-
-# agent will struggle becasue:
-# The code looks valid and the LLM might see "fib" and generate the standard code, but
-# for fib(0)==0 will catch a 0 indexed vs 1 indexed issue
 
 
 PROBLEM_5 = {
@@ -176,12 +172,7 @@ assert fib(10) == 55
 """,
 }
 
-# Problem 6: Running Median with Wrong Structure
-# Bug 1: missing return for the False case → returns None for odd numbers
-# Bug 2: once LLM adds "else return False", it will likely write
-#         n % 2 == 0, which fails on negative evens in Python
-#         because -4 % 2 == 0 (fine) BUT -3 % 2 == 1 not -1,
-#         so actually this pushes them to use abs() or //
+# Problem 6: Running Median with Wrong Structure (might require multiple iterations)
 
 PROBLEM_6 = {
     "name": "running_median_wrong_structure",
@@ -194,10 +185,10 @@ PROBLEM_6 = {
     "notes": (
         "CASCADING TRAP: "
         "Bug: uses mean of two middle values instead of lower middle for even-length windows. "
-        "Iteration 1: LLM fixes int() truncation but uses (a+b)/2 — fails on [1,3] → 2.0 not 1. "
-        "Iteration 2: LLM tries (a+b)//2 — fails on [1,4] → 2 not 1 (lower middle is 1). "
+        "Iteration 1: LLM fixes int() truncation but uses (a+b)/2  fails on [1,3] to 2.0 not 1. "
+        "Iteration 2: LLM tries (a+b)//2 fails on [1,4] to 2 not 1 (lower middle is 1). "
         "Iteration 3: LLM finally uses sorted[mid-1] for even case. "
-        "The spec says 'lower of the two middle values' but LLMs instinctively average them."
+        "The requirement is 'lower of the two middle values' but LLMs average them."
     ),
     "buggy_code": """\
 def running_median(nums):
