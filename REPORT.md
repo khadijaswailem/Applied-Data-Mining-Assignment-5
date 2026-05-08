@@ -35,7 +35,7 @@ Two termination conditions: that all tests pass, and 'iteration >= max_iteration
 
 ![alt text](image-1.png)
 
-**Interpretation:** 
+### Interpretation:
 
 The agent solved 6/6 problems, I added an extra complex problem 6 because the 5 I chose were too easy for the model I chose and fixed them all in one iteration showing  that llama-3.3-70b-versatile is a powerful model to catch bugs like : wrong operator, logic like palindrome and off-by-one directly from the code without needing test failure feedback. 
 However, Problem 6 required 3 iterations hence exceting the Reflexion agent
