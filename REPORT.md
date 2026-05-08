@@ -45,7 +45,7 @@ The agent solved 6/6 problems, I added an extra complex problem 6 because the 5 
 
 ## Failure Mode in Detail
 
-**Problem:** Running median, given a list of numbers, return a list where each element is the median of all numbers seen so far and for an even count, return the lower of the two middle values.
+**Problem:** Running median, given a list of numbers, return a list where each element is the median of all numbers seen so far and for an even count, return the lower of the two middle values. I predicted its gonna fail because most LLMs usually average the median out instead of taking the lower of two values.
 
 
 
